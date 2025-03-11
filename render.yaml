@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: chat-bn
+    env: node
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 7070
+      - key: MONGO_DB_URL
+        fromDatabase:
+          name: mongodb
+          property: connectionString
+      - key: JWT_SECRET_KEY
+        sync: false
+      - key: NODE_ENV
+        value: production
+
+databases:
+  - name: mongodb
+    databaseName: devpulse
+    user: admin
